@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+    <div style="margin-left: 112px; margin-top: 30px; margin-right: 130px;">
+        {% for response in responses %}
+            {% with vacancy=response.vacancy %}
+            <div class="card" style="margin: 13px">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{{ vacancy.get_absolute_url }}">{{ vacancy.name }}</a>
+                    </h5>
+                    <p class="card-text"><strong>{{ vacancy.company_name }}</strong></p>
+                    <p class="card-text"><strong>{{ vacancy.salary }} RUB</strong></p>
+                    <p class="card-text"><strong>{{ vacancy.city }}</strong></p>
+                    <button type="button" class="btn btn-secondary apply-button" data-pk="{{ vacancy.pk }}">
+                        Remove
+                    </button>
+                </div>
+            </div>
+            {% endwith %}
+        {% endfor %}
+    </div>
+{% endblock %}

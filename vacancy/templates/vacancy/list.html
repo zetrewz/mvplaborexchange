@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Vacancies{% endblock %}
+{% block content %}
+    <div style="margin-left: 110px; margin-top: 30px; margin-right: 125px;">
+        {% for i in vacancies %}
+            <div class="card" style="margin-left: 32px; margin-right: 32px; margin-bottom: 15px">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{{ i.get_absolute_url }}">{{ i.name }}</a>
+                    </h5>
+                    <p class="card-text"><strong>{{ i.company_name }}</strong></p>
+                    <p class="card-text"><strong>{{ i.salary }} RUB</strong></p>
+                    <p class="card-text"><strong>{{ i.city }}</strong></p>
+                    <a href="{% url "vacancy:update" i.pk %}">Изменить</a>
+                    <a href="{% url "vacancy:delete" i.pk %}">Удалить</a>
+                    <a href="{% url "vacancy:responses" i.pk %}">Отклики</a>
+                </div>
+            </div>
+        {% endfor %}
+        <p><a class="btn btn-primary" href="{% url "vacancy:create" %}" style="margin-left: 32px;">Создать вакансию</a>
+        </p>
+        {% include "service/pagination.html" with page=vacancies %}
+    </div>
+{% endblock %}

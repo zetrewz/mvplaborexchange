@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+    <div style="margin-left: 112px; margin-top: 30px; margin-right: 130px;">
+        {% for i in responses %}
+            {% with i.resume as resume %}
+                <div class="card" style="margin-left: 32px; margin-right: 32px; margin-bottom: 15px;">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{{ resume.get_absolute_url }}">{{ resume.work_name }}</a>
+                        </h5>
+                        <p class="card-text"><strong></strong>{{ resume.first_name }} {{ resume.last_name }}</p>
+                        <p class="card-text"><strong></strong>+{{ resume.telephone }}</p>
+                        <p class="card-text"><strong></strong>{{ resume.city }}</p>
+                        <p class="card-text"><strong></strong>{{ resume.salary }} RUB на руки</p>
+                    </div>
+                </div>
+            {% endwith %}
+        {% endfor %}
+    </div>
+{% endblock %}

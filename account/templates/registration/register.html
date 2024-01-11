@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mt-4" style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%)">
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+
+                            <div class="mb-3">
+                                <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+                                {{ form.email }}
+                               {{ form.email.errors }}
+                            </div>
+                                <ul >
+                                    {% for message in messages %}
+                                        <li>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                            <div class="mb-3">
+                                <label for="{{ form.password1.id_for_label }}">Password</label>
+                                {{ form.password1 }}
+                                {{ form.password1.errors }}
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
+                                {{ form.password2 }}
+                                {{ form.password2.errors }}
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="{{ form.user_type.id_for_label }}">Кто ты, воин?</label>
+                                {{ form.user_type }}
+                            </div>
+                            <a href="{% url 'account:login' %}"><span>Есть аккаунт?</span></a>
+                            <input type="submit" class="btn btn-primary" value="Register" style="margin-left: 20px;">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
